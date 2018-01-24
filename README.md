@@ -5,4 +5,6 @@
 4) Adjust data, simulation, and plot parameters in grassland_params.R
 5) The simulation reformats the GIS data from data/ into suitable objects. To adjust the example dataset the user can edit the input files through load_grassland_data.R. To do this for linux based systems do:
 - sudo apt-get update && sudo apt-get install libgdal-dev libproj-dev
-- install.packages("rgdal"); library(rgdal)
+- install.packages(c("rgdal", "raster", "rgeos", 'maptools')
+
+ 
