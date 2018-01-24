@@ -1,4 +1,3 @@
-rm(list = ls())
 library(rgdal)
 library(raster)
 library(rgeos)
