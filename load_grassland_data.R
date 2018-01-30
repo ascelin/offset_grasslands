@@ -6,8 +6,6 @@ library(abind)
 library(pixmap)
 library(offsetsim)
 
-source('data_prep_routines.R')
-
 find_disjoint_weights <- function(pool_mask, land_parcels){
   
   pool_mask = as.matrix(pool_mask)
