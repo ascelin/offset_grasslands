@@ -33,7 +33,8 @@ simulation_inputs_folder = ('simulation_inputs/')
 
 objects_to_save = list()
 
-LGA_array <- read_pnm_layer('data/planning.units.uid_20ha.pgm')
+#LGA_array <- read_pnm_layer('data/planning.units.uid_20ha.pgm')
+LGA_array = raster_to_array(raster('data/planning.units.uid_20ha.asc'))
 parcels <- LGA_to_parcel_list(LGA_array)
 
 if (save_site_data == TRUE){
@@ -42,7 +43,8 @@ if (save_site_data == TRUE){
 }
 
 if (save_ecology == TRUE){
-  landscape_ecology <- list(read_pnm_layer('data/hab.map.master.zo1.pgm'))
+  #landscape_ecology <- list(read_pnm_layer('data/hab.map.master.zo1.pgm'))
+  landscape_ecology <- list(raster_to_array(raster('data/hab.map.master.zo1.asc')))
   landscape_ecology <- scale_ecology(landscape_ecology, max_eco_val, dim(landscape_ecology[[1]]))
   objects_to_save$landscape_ecology <- landscape_ecology
   objects_to_save$parcel_ecology <- split_ecology(landscape_ecology, parcels$land_parcels)
