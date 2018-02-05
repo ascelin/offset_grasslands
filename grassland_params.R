@@ -53,7 +53,7 @@ initialise_user_simulation_params <- function(){
   simulation_params$limit_offset_restoration = TRUE
   
   # The probability per parcel of it being stochasticly cleared, every parcel gets set to this number - set to zero to turn off
-  simulation_params$stochastic_clearing_prob = 0
+  simulation_params$stochastic_loss_prob = 0
   
   # Exclude parcels with less than this number of pixels.
   simulation_params$site_screen_size = 50
@@ -90,32 +90,12 @@ initialise_user_simulation_params <- function(){
   # parameters
   simulation_params$use_offset_bank = FALSE
   
-  # The time at which the offset in the bank offsets are first are implemented and start acurring grains, 
-  simulation_params$offset_bank_start = 1 
-  
-  # The time at which no more offsets are added to the bank. The number of
-  # offsets per time step is determined as follows: First the mean number
-  # number per time step is determined, then sampling is done around this
-  # mean number using a normal distribution such that the total number of
-  # developments will always equal the total number (Note sd for this
-  # distribution is set in the code the currently isn't user settable)
-  simulation_params$offset_bank_end = 1 
-  
-  # THe number parcels to include in banking scheme. These are randomly selected.
-  simulation_params$offset_bank_num = 200 
-  
-  # Options are 'credit' or 'parcel_set'. 'credit' means there is accumulated
-  # gain that is subtracted as parcels are developed. 'parcel_set' one or more
-  # parcels in the bank are traded for one development site. If there is left
-  # over credit (and allow_developments_from_credit is set to TRUE) then this excess credit is used on subsequent developments
-  simulation_params$offset_bank_type = c('credit') #c('parcel_set', 'credit')     
-  
   # The time horizon in which the offset gains need to equal the devlopment impact
   simulation_params$offset_time_horizon = 30
   
   # Include stochastic clearing in the calculating the contribution of avoided
   # losses to the impact of the development. 
-  # simulation_params$include_stochastic_clearing_in_dev_calc = simulation_params$include_stochastic_clearing_in_offset_calc
+  # simulation_params$include_stochastic_loss_in_dev_calc = simulation_params$include_stochastic_loss_in_offset_calc
   
   # Include future legal developments in calculating contribution of avoided
   # losses to the impact of the offset. This increases the impact of the
@@ -125,7 +105,7 @@ initialise_user_simulation_params <- function(){
   # Include future stochastic developments in calculating contribution of avoided losses
   # to the impact of the offset. This increases the impact of the
   # offset (due to future losses that are avoided)
-  simulation_params$include_stochastic_clearing_in_offset_calc = FALSE
+  simulation_params$include_stochastic_loss_in_offset_calc = FALSE
   
   simulation_params$dev_counterfactual_adjustment = 'as_offset'
   # The development impacts is multiplied by this factor (irrespective of how
@@ -146,7 +126,7 @@ initialise_user_plot_params <- function(){
   plot_params$plot_type = 'impacts' # can be 'outcomes'  or 'impacts',
   plot_params$output_type = 'scenarios' # set to plot through 'features', 'scenarios' or 'site_sets'
   plot_params$realisation_num = 'all' # 'all' or number to plot
-  plot_params$write_pdf = TRUE
+  plot_params$write_pdf = FALSE
   plot_params$sets_to_plot = 5 # example site to plot
   plot_params$scenario_vec = 'all' #c(1,4,7,10, 8, 2,3,5,6,9,11,12 ) #1:12
   plot_params$site_impact_col_vec = c('darkgreen', 'red', 'black')
