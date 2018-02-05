@@ -68,7 +68,6 @@ if (save_decline_rates == TRUE){
   objects_to_save$decline_rates_initial = simulate_decline_rates(parcel_num = length(parcels$land_parcels), 
                                                        sample_decline_rate = TRUE, 
                                                        mean_decline_rate, 
-                                                       decline_rate_std, 
-                                                       feature_num = 1)       # set up array of decline rates that are eassociated with each cell
+                                                       decline_rate_std)       # set up array of decline rates that are eassociated with each cell
 }
 save_simulation_inputs(objects_to_save, simulation_inputs_folder)
