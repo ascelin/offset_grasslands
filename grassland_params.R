@@ -52,8 +52,8 @@ initialise_user_simulation_params <- function(){
   # Stops the offset from delivering any further gains once it has acheived the gains required
   simulation_params$limit_offset_restoration = TRUE
   
-  # The probability per parcel of it being illegally cleared, every parcel gets set to this number - set to zero to turn off
-  simulation_params$illegal_clearing_prob = 0
+  # The probability per parcel of it being stochasticly cleared, every parcel gets set to this number - set to zero to turn off
+  simulation_params$stochastic_clearing_prob = 0
   
   # Exclude parcels with less than this number of pixels.
   simulation_params$site_screen_size = 50
@@ -113,19 +113,19 @@ initialise_user_simulation_params <- function(){
   # The time horizon in which the offset gains need to equal the devlopment impact
   simulation_params$offset_time_horizon = 30
   
-  # Include illegal clearing in the calculating the contribution of avoided
+  # Include stochastic clearing in the calculating the contribution of avoided
   # losses to the impact of the development. 
-  # simulation_params$include_illegal_clearing_in_dev_calc = simulation_params$include_illegal_clearing_in_offset_calc
+  # simulation_params$include_stochastic_clearing_in_dev_calc = simulation_params$include_stochastic_clearing_in_offset_calc
   
   # Include future legal developments in calculating contribution of avoided
   # losses to the impact of the offset. This increases the impact of the
   # offset (due to future losses that are avoided)
   simulation_params$include_potential_developments_in_offset_calc = FALSE
   
-  # Include future illegal developments in calculating contribution of avoided losses
+  # Include future stochastic developments in calculating contribution of avoided losses
   # to the impact of the offset. This increases the impact of the
   # offset (due to future losses that are avoided)
-  simulation_params$include_illegal_clearing_in_offset_calc = FALSE
+  simulation_params$include_stochastic_clearing_in_offset_calc = FALSE
   
   simulation_params$dev_counterfactual_adjustment = 'as_offset'
   # The development impacts is multiplied by this factor (irrespective of how
