@@ -33,17 +33,13 @@ initialise_user_simulation_params <- function(){
   
   simulation_params$features_to_use_in_offset_intervention = 1
   
-  # The total number of parcels that will be developed
-  simulation_params$total_dev_num = 40
-  
-  # The time step at which development starts
-  simulation_params$dev_start = 1
-  
-  # The time at which development ends
-  simulation_params$dev_end = 50
-  
-  # How long to run the simulaton in years
   simulation_params$time_steps = 50
+  
+  simulation_params$intervention_vec = generate_stochastic_intervention_vec(time_steps = simulation_params$time_steps,
+                                                                            intervention_start = 1, 
+                                                                            intervention_end = simulation_params$time_steps, 
+                                                                            intervention_num = 50, 
+                                                                            sd = 1)
   
   # The maxoimum number of parcels can be selected to offset a single development
   
