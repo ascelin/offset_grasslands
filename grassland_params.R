@@ -2,8 +2,6 @@ initialise_user_global_params <- function(){
   
   global_params = list()
   
-  global_params$overwrite_default_params = TRUE
-  
   global_params$use_simulated_data = FALSE
   
   global_params$number_of_cores = 1
@@ -41,7 +39,7 @@ initialise_user_simulation_params <- function(){
                                                                             intervention_num = 50, 
                                                                             sd = 1)
   
-  # The maxoimum number of parcels can be selected to offset a single development
+  # The maximum number of parcels can be selected to offset a single development
   
   simulation_params$max_offset_parcel_num = 20
   
@@ -54,10 +52,22 @@ initialise_user_simulation_params <- function(){
   # Exclude parcels with less than this number of pixels.
   simulation_params$site_screen_size = 50
   
+  # Lowest value that the logistic decline curve can reach. It will asypotote to this value
+  simulation_params$min_eco_val = 0  
+  
+  # Max value that the logistic decline curve can reach. It will asypotote to this value
+  simulation_params$max_eco_val = 100 
+  
   # The mean and the standard deviation of a normal distribution from which to sample the restoration parameters from
   simulation_params$restoration_rate = 0.02
   
   simulation_params$restoration_rate_std = 0.005
+  
+  #simulation_params$mean_decline_rate = -0.02
+  
+  #simulation_params$decline_rate_std = 0.005
+  
+  
   #   c('net_gains', 'restoration_gains', 'avoided_condition_decline', 'avoided_loss',
   #     'protected_condition', 'current_condition', 'restored_condition')
   
@@ -116,40 +126,40 @@ initialise_user_simulation_params <- function(){
 
 
 
-initialise_user_plot_params <- function(){
-  plot_params = list()
-  plot_params$output_plot_folder = vector()
-  plot_params$plot_type = 'impacts' # can be 'outcomes'  or 'impacts',
-  plot_params$output_type = 'scenarios' # set to plot through 'features', 'scenarios' or 'site_sets'
-  plot_params$realisation_num = 'all' # 'all' or number to plot
-  plot_params$write_pdf = FALSE
-  plot_params$sets_to_plot = 5 # example site to plot
-  plot_params$scenario_vec = 'all' #c(1,4,7,10, 8, 2,3,5,6,9,11,12 ) #1:12
-  plot_params$site_impact_col_vec = c('darkgreen', 'red', 'black')
-  plot_params$program_col_vec = c('darkgreen', 'red', 'black') 
-  plot_params$cfac_col = 'blue' 
-  plot_params$landscape_col = 'black'
-  plot_params$lwd_vec = c(3, 0.5)
-  plot_params$site_impact_lwd = 0.5
-  plot_params$site_outcome_lwd_vec = c(0.5)
-  plot_params$program_lwd_vec = c(3, 0.5)
-  plot_params$program_outcome_lwd_vec = c(3, 0.5)
-  plot_params$landscape_lwd_vec  = c(3)
-  plot_params$landscape_outcome_lwd_vec = c(3)
-  plot_params$string_width = 3 # how many digits are used to store scenario index and realisation index
-  plot_params$nx = 3 
-  plot_params$ny = 4
+initialise_user_output_params <- function(){
+  output_params = list()
+  output_params$output_plot_folder = vector()
+  output_params$plot_type = 'impacts' # can be 'outcomes'  or 'impacts',
+  output_params$output_plot = TRUE # set to TRUE/FALSE
+  output_params$realisation_num = 'all' # 'all' or number to plot
+  output_params$write_pdf = FALSE
+  output_params$plot_program = TRUE
+  output_params$plot_landscape = TRUE
+  output_params$sets_to_plot = 1 # example site to plot
+  output_params$scenario_vec = 'all' #'all' #c(1,4,7,10, 8, 2,3,5,6,9,11,12 ) #1:12
+  output_params$site_impact_col_vec = c('darkgreen', 'red', 'black')
+  output_params$program_col_vec = c('darkgreen', 'red', 'black') 
+  output_params$cfac_col = 'blue' 
+  output_params$landscape_col = 'black'
+  output_params$lwd_vec = c(3, 0.5)
+  output_params$site_impact_lwd = 0.5
+  output_params$site_outcome_lwd_vec = c(0.5)
+  output_params$program_lwd_vec = c(3, 0.5)
+  output_params$program_outcome_lwd_vec = c(3, 0.5)
+  output_params$landscape_lwd_vec  = c(3)
+  output_params$landscape_outcome_lwd_vec = c(3)
+  output_params$string_width = 3 # how many digits are used to store scenario index and realisation index
+  output_params$nx = 5 
+  output_params$ny = 6
   
-  plot_params$site_outcome_plot_lims_set = rep(list(c(0, 3e4)), 1)
-  plot_params$program_outcome_plot_lims_set = rep(list(c(0e6, 1e7)), 1)
-  plot_params$landscape_outcome_plot_lims_set = rep(list(c(0, 2e7)), 1)
+  output_params$site_outcome_plot_lims_set = rep(list(c(0, 3e4)), 1)
+  output_params$program_outcome_plot_lims_set = rep(list(c(0e6, 1e7)), 1)
+  output_params$landscape_outcome_plot_lims_set = rep(list(c(0, 2e7)), 1)
   
-  plot_params$site_impact_plot_lims_set = rep(list(c(-5e3, 5e3)), 1)
-  plot_params$program_impact_plot_lims_set = rep(list(c(-1e5, 1e5)), 1) 
-  plot_params$landscape_impact_plot_lims_set = rep(list(c(-5e5, 0)), 1)
-  
-  
-  
-  return(plot_params)
+  output_params$site_impact_plot_lims_set = rep(list(c(-5e3, 5e3)), 1)
+  output_params$program_impact_plot_lims_set = rep(list(c(-1e5, 1e5)), 1) 
+  output_params$landscape_impact_plot_lims_set = rep(list(c(-5e6, 0)), 1)
+
+  return(output_params)
 }
 

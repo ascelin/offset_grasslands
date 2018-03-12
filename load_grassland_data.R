@@ -24,7 +24,7 @@ max_eco_val = 100
 mean_decline_rate = -0.02
 decline_rate_std = 0.005
 
-save_site_data = TRUE
+save_site_allocation_data = FALSE
 save_ecology = TRUE
 save_decline_rates = TRUE
 save_offset_region = TRUE
@@ -33,17 +33,15 @@ simulation_inputs_folder = ('simulation_inputs/')
 
 objects_to_save = list()
 
-#LGA_array <- read_pnm_layer('data/planning.units.uid_20ha.pgm')
-LGA_array = raster_to_array(raster('data/planning.units.uid_20ha.asc'))
-parcels <- LGA_to_parcel_list(LGA_array)
+planning_units_array = raster_to_array(raster('data/planning.units.uid_20ha.asc'))
+parcels <- define_planning_units(planning_units_array)
 
-if (save_site_data == TRUE){
-  objects_to_save$LGA_array <- LGA_array
+if (save_site_allocation_data == TRUE){
+  objects_to_save$planning_units_array <- planning_units_array
   objects_to_save$parcels <- parcels
 }
 
 if (save_ecology == TRUE){
-  #landscape_ecology <- list(read_pnm_layer('data/hab.map.master.zo1.pgm'))
   landscape_ecology <- list(raster_to_array(raster('data/hab.map.master.zo1.asc')))
   landscape_ecology <- scale_ecology(landscape_ecology, max_eco_val, dim(landscape_ecology[[1]]))
   objects_to_save$landscape_ecology <- landscape_ecology
@@ -60,9 +58,13 @@ if (save_offset_region == TRUE){
     dev_weights = rep(list(1/length(parcels$land_parcels)), length(parcels$land_parcels))
     offset_weights = dev_weights
   }
+  
+  dev_weights[[4]] = 0 #set probability of particular site to zero to exclude from offset group
+  offset_weights[[4]] = 0 #set probability of particular site to zero to exclude from development group
   objects_to_save$dev_weights <- dev_weights
   objects_to_save$offset_weights <- offset_weights
 }
+
 
 if (save_decline_rates == TRUE){
   objects_to_save$decline_rates_initial = simulate_decline_rates(parcel_num = length(parcels$land_parcels), 
