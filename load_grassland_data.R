@@ -24,7 +24,7 @@ max_eco_val = 100
 mean_decline_rate = -0.02
 decline_rate_std = 0.005
 
-save_site_allocation_data = FALSE
+save_site_planning_units = FALSE
 save_ecology = TRUE
 save_decline_rates = TRUE
 save_offset_region = TRUE
@@ -36,7 +36,7 @@ objects_to_save = list()
 planning_units_array = raster_to_array(raster('data/planning.units.uid_20ha.asc'))
 parcels <- define_planning_units(planning_units_array)
 
-if (save_site_allocation_data == TRUE){
+if (save_site_planning_units == TRUE){
   objects_to_save$planning_units_array <- planning_units_array
   objects_to_save$parcels <- parcels
 }
