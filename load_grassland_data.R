@@ -6,15 +6,15 @@ library(abind)
 library(pixmap)
 library(offsetsim)
 
-find_disjoint_weights <- function(pool_mask, land_parcels){
+find_disjoint_probabilty_list <- function(pool_mask, land_parcels){
   
   pool_mask = as.matrix(pool_mask)
-  weights_list = lapply(seq_along(land_parcels), 
+  probability_list = lapply(seq_along(land_parcels), 
                         function(i) as.numeric(sum(pool_mask[land_parcels[[i]]]) > 0))
-  scale_factor = sum(unlist(weights_list))
-  weights_list = lapply(seq_along(weights_list), function(i) weights_list[[i]]/scale_factor)
+  scale_factor = sum(unlist(probability_list))
+  probability_list = lapply(seq_along(probability_list), function(i) probability_list[[i]]/scale_factor)
   
-  return(weights_list)
+  return(probability_list)
 }
 
 data_type = 'grassland'
@@ -51,18 +51,18 @@ if (save_ecology == TRUE){
 if (save_offset_region == TRUE){
   if (offset_into_disjoint_region == TRUE){
     dev_pool_mask = raster('data/dev_pool_mask.asc')
-    dev_weights = find_disjoint_weights(pool_mask = dev_pool_mask, land_parcels = parcels$land_parcels)
+    dev_probabilty_list = find_disjoint_probabilty_list(pool_mask = dev_pool_mask, land_parcels = parcels$land_parcels)
     offset_pool_mask = raster('data/offset_pool_mask_random.asc')
-    offset_weights = find_disjoint_weights(pool_mask = offset_pool_mask, land_parcels = parcels$land_parcels)
+    offset_probabilty_list = find_disjoint_probabilty_list(pool_mask = offset_pool_mask, land_parcels = parcels$land_parcels)
   } else {
-    dev_weights = rep(list(1/length(parcels$land_parcels)), length(parcels$land_parcels))
-    offset_weights = dev_weights
+    dev_probabilty_list = rep(list(1/length(parcels$land_parcels)), length(parcels$land_parcels))
+    offset_probabilty_list = dev_probabilty_list
   }
   
-  dev_weights[[4]] = 0 #set probability of particular site to zero to exclude from offset group
-  offset_weights[[4]] = 0 #set probability of particular site to zero to exclude from development group
-  objects_to_save$dev_weights <- dev_weights
-  objects_to_save$offset_weights <- offset_weights
+  dev_probabilty_list[[4]] = 0 #set probability of particular site to zero to exclude from offset group
+  offset_probabilty_list[[4]] = 0 #set probability of particular site to zero to exclude from development group
+  objects_to_save$dev_probabilty_list <- dev_probabilty_list
+  objects_to_save$offset_probabilty_list <- offset_probabilty_list
 }
 
 

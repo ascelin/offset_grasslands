@@ -47,7 +47,7 @@ initialise_user_simulation_params <- function(){
   simulation_params$limit_offset_restoration = TRUE
   
   # The probability per parcel of it being stochasticly cleared, every parcel gets set to this number - set to zero to turn off
-  simulation_params$stochastic_loss_prob = 0
+  simulation_params$unregulated_loss_prob = 0
   
   # Exclude parcels with less than this number of pixels.
   simulation_params$site_screen_size = 50
@@ -99,19 +99,19 @@ initialise_user_simulation_params <- function(){
   # The time horizon in which the offset gains need to equal the devlopment impact
   simulation_params$offset_time_horizon = 30
   
-  # Include stochastic clearing in the calculating the contribution of avoided
+  # Include unregulated clearing in the calculating the contribution of avoided
   # losses to the impact of the development. 
-  # simulation_params$include_stochastic_loss_in_dev_calc = simulation_params$include_stochastic_loss_in_offset_calc
+  # simulation_params$include_unregulated_loss_in_dev_calc = simulation_params$include_unregulated_loss_in_offset_calc
   
   # Include future legal developments in calculating contribution of avoided
   # losses to the impact of the offset. This increases the impact of the
   # offset (due to future losses that are avoided)
   simulation_params$include_potential_developments_in_offset_calc = FALSE
   
-  # Include future stochastic developments in calculating contribution of avoided losses
+  # Include future unregulated developments in calculating contribution of avoided losses
   # to the impact of the offset. This increases the impact of the
   # offset (due to future losses that are avoided)
-  simulation_params$include_stochastic_loss_in_offset_calc = FALSE
+  simulation_params$include_unregulated_loss_in_offset_calc = FALSE
   
   simulation_params$dev_counterfactual_adjustment = 'as_offset'
   # The development impacts is multiplied by this factor (irrespective of how
