@@ -158,41 +158,10 @@ user_transform_function <- function(pool_vals, transform_params){
 initialise_user_feature_params <- function(){
   
   feature_params = list()
-  feature_params$scale_features = TRUE
-  # how the feature dynamics are determined
+  
   feature_params$background_dynamics_type = 'site_scale'
   feature_params$management_dynamics_type = 'site_scale'
-  
-  feature_params$unique_site_vals = TRUE
-  feature_params$unique_site_modes = TRUE
-  
-  feature_params$site_sample_type = 'trunc_norm'
-  feature_params$initial_site_sd = 0.05
-  
-  feature_params$initial_site_mean_sd = 0.2
-  feature_params$dynamics_sample_type = 'by_initial_value' #'by_initial_value' 
-  # Sample the restoration rates from a uniform distribution to they vary per parcel and per feature
-  feature_params$management_dynamics_sample_type = 'by_initial_value'
-  
-  feature_params$project_by_mean = TRUE
-  
-  feature_params$management_update_dynamics_by_differential = TRUE
-  feature_params$background_update_dynamics_by_differential = TRUE
-  
-  feature_params$perform_management_dynamics_time_shift = FALSE
-  feature_params$perform_background_dynamics_time_shift = FALSE
-  
-  feature_params$update_offset_dynamics_by_time_shift = TRUE
-  
-  feature_params$sample_management_dynamics = TRUE
-  
-  # Sample the background dynamics from a uniform distribution to they vary per site and per feature
-  feature_params$sample_background_dynamics = TRUE
-  feature_params = list()
-  # how the feature dynamics are determined
-  feature_params$background_dynamics_type = 'site_scale'
-  feature_params$management_dynamics_type = 'site_scale'
-  
+  feature_params$scale_features = FALSE
   feature_params$unique_site_vals = TRUE
   feature_params$unique_site_modes = TRUE
   
