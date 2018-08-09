@@ -5,15 +5,14 @@ initialise_user_global_params <- function(){
   global_params$simulation_folder = paste0(path.expand('~'), '/offset_data/grassland/')
   
   global_params$feature_raster_files = paste0(global_params$simulation_folder, 'simulation_inputs/hab.map.master.zo1.asc')
-  
-  global_params$use_simulated_data = FALSE
+  global_params$planning_units_raster = paste0(global_params$simulation_folder, 'simulation_inputs/planning.units.uid_20ha.asc')
   
   global_params$save_output_raster = TRUE
   
   global_params$number_of_cores = 'all'
   
   # The number of realizations to run
-  global_params$realisation_num = 8
+  global_params$realisation_num = 24
   
   # Makes a single pdf at the end of the simulation showing the locatons of all offsets
   global_params$write_offset_layer = FALSE
@@ -21,9 +20,21 @@ initialise_user_global_params <- function(){
   # Create an animation of the outputs
   global_params$write_movie = FALSE
   
+  global_params$build_simulated_data = FALSE
+  
+  global_params$overwrite_site_characteristics = TRUE
+  
+  # Create an animation of the outputs
+  global_params$write_movie = FALSE
+  
   global_params$save_simulation_outputs = TRUE
   
-  
+  global_params$overwrite_dev_probability_list = TRUE
+  global_params$overwrite_offset_probability_list = TRUE
+  global_params$overwrite_management_dynamics = TRUE
+  global_params$overwrite_feature_dynamics = TRUE
+  global_params$overwrite_feature_dynamics_modes = TRUE
+  global_params$overwrite_site_features = TRUE
   return(global_params)
 }
 
@@ -178,7 +189,7 @@ initialise_user_feature_params <- function(){
   feature_params$management_update_dynamics_by_differential = TRUE
   feature_params$background_update_dynamics_by_differential = TRUE
   
-  feature_params$perform_management_dynamics_time_shift = FALSE
+  feature_params$perform_management_dynamics_time_shift = TRUE
   feature_params$perform_background_dynamics_time_shift = FALSE
   
   feature_params$update_offset_dynamics_by_time_shift = TRUE
