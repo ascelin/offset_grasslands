@@ -12,7 +12,7 @@ initialise_user_global_params <- function(){
   global_params$number_of_cores = 'all'
   
   # The number of realizations to run
-  global_params$realisation_num = 24
+  global_params$realisation_num = 1
   
   # Makes a single pdf at the end of the simulation showing the locatons of all offsets
   global_params$write_offset_layer = FALSE
@@ -29,10 +29,17 @@ initialise_user_global_params <- function(){
   
   global_params$save_simulation_outputs = TRUE
   
+  # if a file is supplied set this to false to use values in provided list of probabilities, otherwise set to true for equal probability of site development 
   global_params$overwrite_dev_probability_list = TRUE
+  
+  # if a file is supplied set this to false to use values in provided list of probabilities, otherwise set to true for equal probability of site offset 
   global_params$overwrite_offset_probability_list = TRUE
+
+  # if a file is supplied set this to false to use values in provided list of dynamics, otherwise set to true for on the fly dynamics calculations
   global_params$overwrite_management_dynamics = TRUE
+  # if a file is supplied set this to false to use values in provided list of dynamics, otherwise set to true for on the fly dynamics calculations
   global_params$overwrite_feature_dynamics = TRUE
+  # if a file is supplied set this to false to use values in provided raster layer of condition classes, otherwise set to true for on the fly condition class calculations
   global_params$overwrite_condition_classes = TRUE
   global_params$overwrite_site_features = TRUE
   return(global_params)
