@@ -33,7 +33,7 @@ initialise_user_global_params <- function(){
   global_params$overwrite_offset_probability_list = TRUE
   global_params$overwrite_management_dynamics = TRUE
   global_params$overwrite_feature_dynamics = TRUE
-  global_params$overwrite_feature_dynamics_modes = TRUE
+  global_params$overwrite_condition_classes = TRUE
   global_params$overwrite_site_features = TRUE
   return(global_params)
 }
@@ -102,7 +102,7 @@ initialise_user_simulation_params <- function(){
   simulation_params$intervention_num = 500
   
   # when the interventions are set to take place, in this case force to occur once per year
-  simulation_params$intervention_vec = generate_stochastic_intervention_vec(time_steps = simulation_params$time_steps, 
+  simulation_params$intervention_vec = build_stochastic_intervention(time_steps = simulation_params$time_steps, 
                                                                             intervention_start = 1, 
                                                                             intervention_end = simulation_params$time_steps, 
                                                                             intervention_num = simulation_params$intervention_num, 
