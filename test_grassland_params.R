@@ -7,25 +7,17 @@ initialise_user_global_params <- function(){
   global_params$feature_raster_files = paste0(global_params$simulation_folder, 'simulation_inputs/hab.map.master.zo1.asc')
   global_params$planning_units_raster = paste0(global_params$simulation_folder, 'simulation_inputs/planning.units.uid_20ha.asc')
   
-  global_params$save_output_raster = TRUE
   
   global_params$number_of_cores = 'all'
   
   # The number of realizations to run
   global_params$realisation_num = 1
   
-  # Makes a single pdf at the end of the simulation showing the locatons of all offsets
-  global_params$write_offset_layer = FALSE
-  
-  # Create an animation of the outputs
-  global_params$write_movie = FALSE
   
   global_params$build_simulated_data = FALSE
   
   global_params$overwrite_site_characteristics = TRUE
   
-  # Create an animation of the outputs
-  global_params$write_movie = FALSE
   
   global_params$save_simulation_outputs = TRUE
   
@@ -184,9 +176,7 @@ initialise_user_feature_params <- function(){
   feature_params$unique_site_modes = TRUE
   
   feature_params$site_sample_type = 'trunc_norm'
-  feature_params$initial_site_sd = 0.05
-  
-  feature_params$initial_site_mean_sd = 0.2
+
   feature_params$dynamics_sample_type = 'by_initial_value' #'by_initial_value' 
   # Sample the restoration rates from a uniform distribution to they vary per parcel and per feature
   feature_params$management_dynamics_sample_type = 'by_distribution'
@@ -208,19 +198,13 @@ initialise_user_feature_params <- function(){
   
   feature_params$simulated_time_vec = 0:80
   
-  feature_params$condition_class_bounds = list(list(c(0, 0.5, 1)), list(c(0, 0.5, 1)), list(c(0, 0.5, 1)), list(c(0, 0.5, 1)))
+  feature_params$condition_class_bounds = list(list(c(0, 0.5, 1)))
   
   mean_decline_rate = -0.02
   mean_restoration_rate = 0.04
-  background_logistic_params_set = list(list(list(c(0, mean_decline_rate), c(0.5, mean_decline_rate), c(1, mean_decline_rate))),
-                                        list(list(c(0, mean_decline_rate), c(0.5, mean_decline_rate), c(1, mean_decline_rate))),
-                                        list(list(c(0, mean_decline_rate), c(0.5, mean_decline_rate), c(1, mean_decline_rate))),
-                                        list(list(c(0, mean_decline_rate), c(0.5, mean_decline_rate), c(1, mean_decline_rate))))
+  background_logistic_params_set = list(list(list(c(0, mean_decline_rate), c(0.5, mean_decline_rate), c(1, mean_decline_rate))))
   
-  management_logistic_params_set = list(list(list(c(0.01, 0.04), c(0.01, 0.05), c(0.01, 0.06))),
-                                        list(list(c(0.01, mean_restoration_rate),  c(0.01, mean_restoration_rate), c(0.01, mean_restoration_rate))),
-                                        list(list(c(0.01, mean_restoration_rate), c(0.01, mean_restoration_rate), c(0.01, mean_restoration_rate))),
-                                        list(list(c(0.01, mean_restoration_rate),c(0.01, mean_restoration_rate), c(0.01, mean_restoration_rate))))
+  management_logistic_params_set = list(list(list(c(0.01, 0.04), c(0.01, 0.05), c(0.01, 0.06))))
   
   feature_params$simulated_time_vec = 0:200
   
@@ -258,15 +242,18 @@ initialise_user_output_params <- function(){
   output_params$output_plot_folder = vector()
   output_params$plot_type = 'impacts' # can be 'outcomes'  or 'impacts' or 'none'
   output_params$realisation_num = 'all' # 'all' or number to plot
-  output_params$write_pdf = FALSE
-  
+  output_params$write_pdf = TRUE
+  output_params$save_output_raster = TRUE
+  output_params$mov_file_type = 'png'
+  output_params$output_movie = TRUE
+  output_params$output_plot = TRUE
   output_params$plot_site = TRUE
   output_params$plot_program = TRUE
   output_params$plot_landscape = TRUE
   output_params$plot_offset_metric = FALSE
   
   output_params$scenario_vec = 'all' #c(1,4,7,10, 8, 2,3,5,6,9,11,12 ) #1:12
-  output_params$output_plot = TRUE # can be set to 'plot' or 'file'
+
   output_params$output_csv_file = FALSE # can be set to 'plot' or 'file'
   output_params$plot_subset_type = 'all' #c('offset_action_type') # 'offset_calc_type', 'offset_action_type', offset_time_horizon'
   output_params$plot_subset_param = 'all' #c('maintain') # 'net_gains', 'restore', 15
