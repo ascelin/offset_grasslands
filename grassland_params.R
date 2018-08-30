@@ -18,7 +18,6 @@ initialise_user_global_params <- function(){
   
   global_params$overwrite_site_characteristics = TRUE
   
-  
   global_params$save_simulation_outputs = TRUE
   
   # if a file is supplied set this to false to use values in provided list of probabilities, otherwise set to true for equal probability of site development 
@@ -93,7 +92,7 @@ initialise_user_simulation_params <- function(){
   simulation_params$limit_offset_restoration = TRUE
   
   # The probability per parcel of it being unregulatedly cleared, every parcel gets set to this number - set to zero to turn off
-  simulation_params$unregulated_loss_prob = 0
+  simulation_params$unregulated_loss_prob = 0.005
   
   # Exclude parcels with less than this number of elements
   simulation_params$min_site_screen_size = 5
