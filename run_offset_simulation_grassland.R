@@ -8,5 +8,5 @@ user_output_params <- initialise_user_output_params()
 
 osim.run(user_global_params, user_simulation_params, user_feature_params, loglevel = 'TRACE')
 
-current_simulation_folder = find_current_run_folder(base_folder = '~/offset_data/grassland/', integer_placeholder_width = 3)
+current_simulation_folder = find_current_run_folder(base_folder = '~/offset_data/grassland/', file_placeholder_width = 3)
 osim.output(user_output_params, current_simulation_folder, loglevel = 'TRACE')
