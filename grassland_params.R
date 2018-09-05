@@ -2,11 +2,10 @@ initialise_user_global_params <- function(){
   
   global_params = list()
   
-  global_params$simulation_folder = paste0(path.expand('~'), '/offset_data/grassland/')
+  global_params$simulation_folder = 'simulation_inputs/'
   
-  global_params$feature_raster_files = paste0(global_params$simulation_folder, 'simulation_inputs/hab.map.master.zo1.asc')
-  global_params$planning_units_raster = paste0(global_params$simulation_folder, 'simulation_inputs/planning.units.uid_20ha.asc')
-  
+  global_params$feature_raster_files = 'data/hab.map.master.zo1.asc'
+  global_params$planning_units_raster = 'data/planning.units.uid_20ha.asc'
   
   global_params$number_of_cores = 'all'
   
@@ -244,7 +243,7 @@ initialise_user_output_params <- function(){
   output_params$output_folder = vector()
   output_params$plot_type = 'impacts' # can be 'outcomes'  or 'impacts' or 'none'
   output_params$realisation_num = 'all' # 'all' or number to plot
-  output_params$output_type = 'png'
+  output_params$output_type = 'plot'
   output_params$plot_site = TRUE
   output_params$plot_program = TRUE
   output_params$plot_landscape = TRUE
@@ -260,7 +259,7 @@ initialise_user_output_params <- function(){
   output_params$program_outcome_plot_lims_set = list(c(0e6, 1e4))
   output_params$landscape_outcome_plot_lims_set = list(c(0, 2e4))
   output_params$nx = 3 
-  output_params$ny = 1
+  output_params$ny = 3
   output_params$site_impact_plot_lims_set = list(rep(list(c(-1e2, 1e2)), 3))
   output_params$program_impact_plot_lims_set = list(rep(list(c(-1e3, 1e3)), 3))
   output_params$landscape_impact_plot_lims_set = list(rep(list(c(-1e5, 1e5)), 3))
