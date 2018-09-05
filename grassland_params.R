@@ -244,19 +244,13 @@ initialise_user_output_params <- function(){
   output_params$output_folder = vector()
   output_params$plot_type = 'impacts' # can be 'outcomes'  or 'impacts' or 'none'
   output_params$realisation_num = 'all' # 'all' or number to plot
-  output_params$write_pdf = TRUE
-  output_params$output_raster_layers = TRUE
-  output_params$output_image_file_type = 'png'
-  output_params$output_image_layers = TRUE
-  output_params$output_plot = TRUE
+  output_params$output_type = 'png'
   output_params$plot_site = TRUE
   output_params$plot_program = TRUE
   output_params$plot_landscape = TRUE
   output_params$plot_offset_metric = FALSE
   
   output_params$scenario_vec = 'all' #c(1,4,7,10, 8, 2,3,5,6,9,11,12 ) #1:12
-
-  output_params$output_csv_file = FALSE # can be set to 'plot' or 'file'
   output_params$plot_subset_type = 'all' #c('offset_action_type') # 'offset_calc_type', 'offset_action_type', offset_time_horizon'
   output_params$plot_subset_param = 'all' #c('maintain') # 'net_gains', 'restore', 15
   output_params$features_to_output = 1
@@ -267,9 +261,12 @@ initialise_user_output_params <- function(){
   output_params$landscape_outcome_plot_lims_set = list(c(0, 2e4))
   output_params$nx = 3 
   output_params$ny = 1
-  output_params$site_impact_plot_lims_set = list(c(-1e2, 1e2), c(-1e2, 1e2), c(-1e2, 1e2), c(-1e3, 1e3), c(-1e3, 1e3), c(-1e3, 1e3))
-  output_params$program_impact_plot_lims_set = list(c(-1e4, 1e4), c(-2e4, 2e4), c(-2e4, 2e4), c(-2e4, 2e4), c(-2e4, 2e4), c(-2e4, 2e4)) 
-  output_params$landscape_impact_plot_lims_set = list(c(-1e4, 1e4), c(-1e4, 1e4), c(-1e4, 1e4), c(-1e5, 1e5), c(-1e5, 1e5), c(-1e5, 1e5))
+  output_params$site_impact_plot_lims_set = list(rep(list(c(-1e2, 1e2)), 3))
+  output_params$program_impact_plot_lims_set = list(rep(list(c(-1e3, 1e3)), 3))
+  output_params$landscape_impact_plot_lims_set = list(rep(list(c(-1e5, 1e5)), 3))
+  output_params$site_outcome_plot_lims_set = list(rep(list(c(0, 1e2)), 3))
+  output_params$program_outcome_plot_lims_set = list(rep(list(c(0, 1e3)), 3))
+  output_params$landscape_outcome_plot_lims_set = list(rep(list(c(0, 1e5)), 3))
   
   return(output_params)
 }
