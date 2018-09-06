@@ -8,8 +8,7 @@ initialise_user_global_params <- function(){
   global_params$number_of_cores = 'all'
   
   # The number of realizations to run
-  global_params$realisation_num = 1
-  
+  global_params$realisation_num = 8
   
   global_params$build_simulated_data = FALSE
   
@@ -97,7 +96,7 @@ initialise_user_simulation_params <- function(){
   # setting (0-1] ignore parcels with size above this number of elements 
   simulation_params$max_site_screen_size_quantile = 0.99
   
-  simulation_params$intervention_num = 500
+  simulation_params$intervention_num = 1000
   
   # when the interventions are set to take place, in this case force to occur once per year
   simulation_params$intervention_vec = build_stochastic_intervention(time_steps = simulation_params$time_steps, 
@@ -256,7 +255,7 @@ initialise_user_output_params <- function(){
   output_params$site_outcome_plot_lims_set = list(c(0, 1e2))
   output_params$program_outcome_plot_lims_set = list(c(0e6, 1e4))
   output_params$landscape_outcome_plot_lims_set = list(c(0, 2e4))
-  output_params$nx = 3 
+  output_params$nx = 1 
   output_params$ny = 3
   output_params$site_impact_plot_lims_set = list(rep(list(c(-1e2, 1e2)), 3))
   output_params$program_impact_plot_lims_set = list(rep(list(c(-1e3, 1e3)), 3))
