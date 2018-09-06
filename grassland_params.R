@@ -2,8 +2,6 @@ initialise_user_global_params <- function(){
   
   global_params = list()
   
-  global_params$simulation_folder = 'simulation_inputs/'
-  
   global_params$feature_raster_files = 'data/hab.map.master.zo1.asc'
   global_params$planning_units_raster = 'data/planning.units.uid_20ha.asc'
   
