@@ -68,6 +68,7 @@ initialise_user_simulation_params <- function(){
   
   simulation_params = list()
   
+
   # what subset of features to use in the simulation
   simulation_params$features_to_use_in_simulation = 1
   
@@ -96,14 +97,6 @@ initialise_user_simulation_params <- function(){
   # setting (0-1] ignore parcels with size above this number of elements 
   simulation_params$max_site_screen_size_quantile = 0.99
   
-  simulation_params$intervention_num = 1000
-  
-  # when the interventions are set to take place, in this case force to occur once per year
-  simulation_params$intervention_vec = build_stochastic_intervention(time_steps = simulation_params$time_steps, 
-                                                                            intervention_start = 1, 
-                                                                            intervention_end = simulation_params$time_steps, 
-                                                                            intervention_num = simulation_params$intervention_num, 
-                                                                            sd = 1)
   
   #   c('net_gains', 'restoration_gains', 'avoided_condition_decline', 'avoided_loss',
   #     'protected_condition', 'current_condition', 'restored_condition')
@@ -121,11 +114,11 @@ initialise_user_simulation_params <- function(){
   # credit is large enough. FALSE means ignore any exces credit from offset exchanges
   simulation_params$allow_developments_from_credit = TRUE
   
-  # How the development parcels are selected options are 'random' or
+  # How the development parcels are selected options are 'stochastic' or
   # 'weighted'. Note tha weighted requires an additonal weighting layer. If
   # you are running on your own data you need to specify the weights file in
   # intialise_routines.R  (or put the files in simulation_inputs)
-  simulation_params$development_selection_type = 'random'  
+  simulation_params$development_selection_type = 'stochastic'  
   
   # The time horizon in which the offset gains need to equal the devlopment impact
   simulation_params$offset_time_horizon = 30
@@ -143,13 +136,27 @@ initialise_user_simulation_params <- function(){
   # Include unregulated clearing in the calculating the contribution of avoided
   # losses to the impact of the development. 
   simulation_params$include_unregulated_loss_in_dev_calc = simulation_params$include_unregulated_loss_in_offset_calc
-  
+  simulation_params$initial_credit = 0
   simulation_params$dev_counterfactual_adjustment = 'as_offset'
   # The development impacts is multiplied by this factor (irrespective of how
   # they were caluclated) and the offset impact then needs to match this
   # multiplied development impact
   simulation_params$offset_multiplier = 1
+#   directed_developments = vector('list', simulation_params$time_steps)
+#   directed_developments[1:50] = c(21:70)
+#   simulation_params$directed_developments = list(directed_developments)
+#   # when the interventions are set to take place, in this case force to occur once per year
+#  simulation_params$intervention_vec = unlist(lapply(seq_along(directed_developments), function(i) length(directed_developments[[i]])))
   
+  simulation_params$intervention_num = 500
+  
+  # when the interventions are set to take place, in this case force to occur once per year
+  simulation_params$intervention_vec = build_stochastic_intervention(time_steps = simulation_params$time_steps, 
+                                                                     intervention_start = 1, 
+                                                                     intervention_end = simulation_params$time_steps, 
+                                                                     intervention_num = simulation_params$intervention_num, 
+                                                                     sd = 1)
+
   return(simulation_params)
   
 }
@@ -243,6 +250,7 @@ initialise_user_output_params <- function(){
   output_params$plot_program = TRUE
   output_params$plot_landscape = TRUE
   output_params$plot_offset_metric = FALSE
+  output_params$write_pdf = TRUE
   
   output_params$scenario_vec = 'all' #c(1,4,7,10, 8, 2,3,5,6,9,11,12 ) #1:12
   output_params$plot_subset_type = 'all' #c('offset_action_type') # 'offset_calc_type', 'offset_action_type', offset_time_horizon'
@@ -251,12 +259,12 @@ initialise_user_output_params <- function(){
   output_params$print_dev_offset_sites = FALSE
   output_params$sets_to_plot = 1
   output_params$nx = 3 
-  output_params$ny = 1
+  output_params$ny = 3
   output_params$site_impact_plot_lims_set = list(rep(list(c(-5e2, 5e2)), 3))
-  output_params$program_impact_plot_lims_set = list(rep(list(c(-1e5, 1e5)), 3))
+  output_params$program_impact_plot_lims_set = list(rep(list(c(-1e4, 1e4)), 3))
   output_params$landscape_impact_plot_lims_set = list(rep(list(c(-1e5, 1e5)), 3))
-  output_params$site_outcome_plot_lims_set = list(rep(list(c(0, 1e2)), 3))
-  output_params$program_outcome_plot_lims_set = list(rep(list(c(0, 1e3)), 3))
+  output_params$site_outcome_plot_lims_set = list(rep(list(c(0, 1e3)), 3))
+  output_params$program_outcome_plot_lims_set = list(rep(list(c(0, 5e4)), 3))
   output_params$landscape_outcome_plot_lims_set = list(rep(list(c(0, 1e5)), 3))
   
   return(output_params)
